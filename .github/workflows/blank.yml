@@ -1,0 +1,36 @@
+# Trigger the pipeline on every push to the "master" branch.
+on:
+  push:
+    branches:
+      - main
+
+# Define the jobs to be executed in the pipeline.
+jobs:
+  # Define the "build" job, which runs on an "ubuntu-latest" runner.
+  build:
+    runs-on: ubuntu-latest
+
+    # List of steps to be executed in the "build" job.
+    steps:
+      # Checkout the source code from the repository.
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up Node.js on the runner machine with version 14.
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      # Install project dependencies using npm.
+      - name: Install dependencies
+        run: npm install
+
+      # Build the project using npm.
+      - name: Build project
+        run: npm run build
+These comments provide a clear explanation of the purpose of each section and step in the YAML file, making it easier for others to understand and maintain your CI/CD pipeline configuration.
+
+
+
+
